@@ -22,7 +22,8 @@ app.use("*", function (req, res) {
 });
 
 const PORT = 3040;
-const MONGO_DB_URI = "mongodb://127.0.0.1:27017/foodDatabase";
+const MONGO_DB_URI =
+  "mongodb+srv://bandralharry540:Nokia7210@cluster0.pc8e6wi.mongodb.net/foodDatabase";
 mongoose
   .connect(MONGO_DB_URI)
   .then(() => {
