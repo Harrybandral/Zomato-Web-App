@@ -11,14 +11,12 @@ function Restaurant() {
   let [rMenuList, setRMenuList] = useState([]);
   let [totalPrice, setTotalPrice] = useState(0);
   let getRestaurantDetails = async () => {
-    let url =
-      "https://zomato-web-api.onrender.com/api/get-restaurant-details/" + id;
+    let url = "http://localhost:3040/api/get-restaurant-details/" + id;
     let { data } = await axios.get(url);
     setRDetails(data.result);
   };
   let getMenuItemList = async () => {
-    let url =
-      "https://zomato-web-api.onrender.com/api/get-menu-item-list/" + id;
+    let url = "http://localhost:3040/api/get-menu-item-list/" + id;
     let { data } = await axios.get(url);
     setRMenuList(data.result);
   };
@@ -40,11 +38,11 @@ function Restaurant() {
   };
 
   let getPaymentView = async () => {
-    const url = "https://zomato-web-api.onrender.com/api/create-order";
+    const url = "http://localhost:3040/api/create-order";
     let { data } = await axios.post(url, { amount: totalPrice });
 
     let options = {
-      key: "rzp_test_RB0WElnRLezVJ5", // Enter the Key ID generated from the Dashboard
+      key: "rzp_test_F6bzcFcKio51Jr", // Enter the Key ID generated from the Dashboard
       amount: totalPrice * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
       name: "Zomato App",
@@ -58,7 +56,7 @@ function Restaurant() {
           order_id: response.razorpay_order_id,
           signature: response.razorpay_signature,
         };
-        let url = "https://zomato-web-api.onrender.com/api/verify-payment";
+        let url = "http://localhost:3040/api/verify-payment";
         let { data } = await axios.post(url, sendData);
         console.log(data);
       },
