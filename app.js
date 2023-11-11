@@ -3,7 +3,6 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const AppRouter = require("./routes/AppRoutes");
-const path = require("path");
 
 // enable cors
 app.use(cors());
@@ -15,15 +14,9 @@ app.use(express.urlencoded({ extended: false })); // enable form data
 // extended: false ==> will not allow parma or query params
 //add routes
 app.use("/api", AppRouter);
-app.use(express.static(path.join(__dirname, "./client/public")));
-
-app.use("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
-});
 
 const PORT = 3040;
-const MONGO_DB_URI =
-  "mongodb+srv://bandralharry540:Nokia7210@cluster0.pc8e6wi.mongodb.net/foodDatabase";
+const MONGO_DB_URI = "mongodb://127.0.0.1:27017/foodDatabase";
 mongoose
   .connect(MONGO_DB_URI)
   .then(() => {
